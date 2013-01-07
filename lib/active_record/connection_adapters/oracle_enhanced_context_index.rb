@@ -158,7 +158,7 @@ module ActiveRecord
             selected_columns.map do |cols|
               cols.map do |col|
                 raise ArgumentError, "Alias #{col} too large, should be 28 or less characters long" unless col.length <= 28
-                "l_#{col} VARCHAR2(32767);\n"
+                "l_#{col} CLOB;\n"
               end.join
             end.join
             } BEGIN
@@ -346,7 +346,7 @@ module ActiveRecord
       end
 
     end
-    
+
   end
 end
 
