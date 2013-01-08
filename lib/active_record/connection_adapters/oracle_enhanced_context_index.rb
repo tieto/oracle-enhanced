@@ -172,7 +172,7 @@ module ActiveRecord
                 col = col.to_s
                 "DBMS_LOB.WRITEAPPEND(p_clob, #{col.length+2}, '<#{col}>');\n" <<
                 "IF LENGTH(r1.#{col}) > 0 THEN\n" <<
-                "DBMS_LOB.WRITEAPPEND(p_clob, LENGTH(r1.#{col}), r1.#{col});\n" <<
+                "DBMS_LOB.APPEND(p_clob, r1.#{col});\n" <<
                 "END IF;\n" <<
                 "DBMS_LOB.WRITEAPPEND(p_clob, #{col.length+3}, '</#{col}>');\n"
               end.join) <<
@@ -190,7 +190,7 @@ module ActiveRecord
                   col = col.to_s
                   "DBMS_LOB.WRITEAPPEND(p_clob, #{col.length+2}, '<#{col}>');\n" <<
                   "IF LENGTH(l_#{col}) > 0 THEN\n" <<
-                  "DBMS_LOB.WRITEAPPEND(p_clob, LENGTH(l_#{col}), l_#{col});\n" <<
+                  "DBMS_LOB.APPEND(p_clob, l_#{col});\n" <<
                   "END IF;\n" <<
                   "DBMS_LOB.WRITEAPPEND(p_clob, #{col.length+3}, '</#{col}>');\n"
                 end.join)
