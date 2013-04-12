@@ -183,7 +183,7 @@ module ActiveRecord
                 "FOR r2 IN (\n" <<
                 query.gsub(/:(\w+)/,"r1.\\1") << "\n) LOOP\n" <<
                 (cols.map do |col|
-                  "l_#{col} := l_#{col} || r2.#{col} || CHR(10);\n"
+                  "l_#{col} := TO_CLOB(l_#{col}) || r2.#{col} || CHR(10);\n"
                 end.join) <<
                 "END LOOP;\n" <<
                 (cols.map do |col|
